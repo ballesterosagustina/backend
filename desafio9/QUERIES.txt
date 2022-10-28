@@ -1,0 +1,51 @@
+use ecommerce
+
+db.createCollection('mensajes')
+db.createCollection('productos')
+
+db.productos.insertMany([
+    {title: "regla", price: 100, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"},
+    {title: "tijera", price: 200, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"},
+    {title: "martillo", price: 400, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"},
+    {title: "destornillador", price: 1000, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"},
+    {title: "cinta", price: 2000, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"},
+    {title: "clavo", price: 3000, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"},
+    {title: "serrucho", price: 4000, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"},
+    {title: "cuchillo", price: 5000, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"},
+    {title: "alicate", price: 4400, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"},
+    {title: "pala", price: 3300, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"},
+])
+
+db.productos.insertOne({title: "cartucho", price: 500, thumbnail: "https://cdn1.iconfinder.com/data/icons/construction-136/300/ruller-work-site-fabric-build-98-512.png"})
+
+db.mensajes.insertOne({
+    email: "correo2@gmail.com",
+    msj: "hola",
+    hora: Date(Date.now())
+})
+
+db.productos.find()
+
+db.mensajes.find()
+
+db.productos.find({_id: ObjectId("60f1b5b0b0b5b8b2c8b0b2d4")})
+
+db.mensajes.countDocuments()
+
+db.productos.countDocuments()
+
+db.productos.find({ price: { $gt: 1000 } })
+
+db.productos.find({ $and: [{ price: { $gte: 1000 } }, { price: { $lte: 3000 } }] })
+
+db.productos.find({ price: { $gt: 3000 } })
+
+db.productos.updateMany({},{ $set: { stock: 100 } })
+
+db.productos.updateMany({ price: { $gt: 4000 } }, { $set: { stock: 0 } })
+
+db.productos.deleteMany({ price: { $lt: 1000 } })
+
+db.createUser({user: "pepe", pwd: "asd456", roles: [ {role: "read", db: "ecommerce"} ]})
+
+db.runCommand({connectionStatus: 1})
