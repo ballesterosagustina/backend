@@ -1,0 +1,8 @@
+<% for (let i = 0; i < productos.length; i++) { %>
+<tr>
+    <th scope="row"><%= productos[i].id %></th>
+    <td><%= productos[i].nombre %></td>
+    <td><%= productos[i].precio %></td>
+    <td><img src="<%= productos[i].miniatura %>" alt="miniatura" width="50px"></td>
+</tr>
+<% } %>
